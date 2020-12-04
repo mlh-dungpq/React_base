@@ -21,21 +21,25 @@ export default function Post() {
       <h1>Post Screen</h1>
       {postState.post ? (<div>
         <table>
+          <thead>
             <tr>
               <th>UserId</th>
               <th>Id</th>
               <th>Title</th>
               <th>Body</th>
             </tr>
-        {postState.post.map(item => {
-          return (
-            <tr>
-              <td>{item.userId}</td>
-              <td>{item.id}</td>
-              <td>{item.title}</td>
-              <td>{item.body}</td>
-            </tr>
-          )})}
+          </thead>
+          <tbody>
+          {postState.post.map(item => {
+            return (
+              <tr>
+                <td>{item.userId}</td>
+                <td>{item.id}</td>
+                <td>{item.title}</td>
+                <td>{item.body}</td>
+              </tr>
+            )})}
+          </tbody>
         </table>
       </div>) : (<div>loading</div>)}
     </div>
