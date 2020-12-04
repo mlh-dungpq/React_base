@@ -1,0 +1,21 @@
+$gray: #dddddd;
+$textFont: arial, sans-serif;
+
+table {
+  font-family: $textFont;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid $gray;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: $gray;
+}
+.divPost {
+  margin: 10px;
+}
