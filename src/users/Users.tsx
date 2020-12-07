@@ -1,99 +1,86 @@
 import React from 'react';
 import './Users.scss';
-import {useFormik} from 'formik';
+import { Formik, Form, Field } from 'formik';
+const yup = require("yup");
 
-const validate = (values: any) => {
-  const errors = {
-    firstName: '',
-    lastName: '',
-    email: ''
-  };
-  if (!values.firstName) {
-    errors.firstName = 'Required';
-  } else if (values.firstName.length > 15) {
-    errors.firstName = 'Must be 15 characters or less';
-  }
-
-  if (!values.lastName) {
-    errors.lastName = 'Required';
-  } else if (values.lastName.length > 20) {
-    errors.lastName = 'Must be 20 characters or less';
-  }
-
-  if (!values.email) {
-    errors.email = 'Required';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address';
-  }
-
-  return errors;
-};
+const SignupSchema = yup.object().shape({
+  firstName: yup.string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  lastName: yup.string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  email: yup.string()
+    .email('Invalid email')
+    .required('Required'),
+  password: yup.string()
+    .min(8, 'Too Short!')
+    .required('Required'),
+  confirmPassword: yup.string()
+    .oneOf([yup.ref('password'), null], 'Passwords must match')
+    .required('Required'),
+});
 
 export default function Users() {
-  const formik = useFormik({
-    initialValues: {
-      firstName: '',
-      lastName: '',
-      email: ''
-    },
-
-    onSubmit: values => {
-      console.log('form data: ', values);
-    },
-
-    validate
-  });
-
-  console.log('form formik ', formik.values);
+  const handleReset = () => {
+    if (!window.confirm('Reset?')) {
+      throw new Error('Cancel reset');
+    }
+  };
 
   return (
-    <div className='user'>
-      <form onSubmit={formik.handleSubmit}>
-        <div>
-          <label htmlFor="firstName">Full Name</label>
-          <input 
-            type='text' 
-            id="firstName" 
-            name='firstName' 
-            onChange={formik.handleChange} 
-            value={formik.values.firstName}
-            onBlur={formik.handleBlur}
-          />
-          {formik.errors.firstName && formik.touched.firstName && (
-            <p className='error'>{formik.errors.firstName}</p>
-          )}
-        </div>
+    <> 
+    <h1 className="text-center">Signup</h1>
+    <div className="user">
+    <Formik
+      initialValues={{
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+      }}
+      validationSchema={SignupSchema}
+      onSubmit={values => {
+        // same shape as initial values
+        console.log(values);
+      }}
+      onReset={handleReset}
+    >
+      {({ errors, touched }) => (
+        <Form>
+          <label>First Name</label>
+          <Field name="firstName" type="text" />
+          {errors.firstName && touched.firstName ? (
+            <div className="error">{errors.firstName}</div>
+          ) : null}
 
-        <label htmlFor="lastName">Last Name</label>
-        <input
-          id="lastName"
-          name="lastName"
-          type="text"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.lastName}
-        />
-        {formik.touched.lastName && formik.errors.lastName ? (
-          <p className='error'>{formik.errors.lastName}</p>
-        ) : null}
+          <label>Last Name</label>
+          <Field name="lastName" type="text" />
+          {errors.lastName && touched.lastName ? (
+            <div className="error">{errors.lastName}</div>
+          ) : null}
 
-        <label htmlFor="email">Email Address</label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.email}
-        />
-        {formik.touched.email && formik.errors.email ? (
-          <p className='error'>{formik.errors.email}</p>
-        ) : null}
+          <label>Email</label>
+          <Field name="email" type="email" />
+          {errors.email && touched.email ? <div className="error">{errors.email}</div> : null}
 
-        <div>
-          <button type='submit'>Submit</button>
-        </div>
-      </form>
-    </div>
-  )
+          <label>Password</label>
+          <Field name="password" type="password" />
+          {errors.password && touched.password ? <div className="error">{errors.password}</div> : null}
+
+          <label>Confirm Password</label>
+          <Field name="confirmPassword" type="password" />
+          {errors.confirmPassword && touched.confirmPassword ? <div className="error">{errors.confirmPassword}</div> : null}
+
+          <button type="submit">Submit</button>
+          <button type="reset">Reset</button>
+        </Form>
+      )}
+    </Formik>
+  </div>
+  </>
+  );
 }
