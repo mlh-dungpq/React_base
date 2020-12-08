@@ -25,3 +25,12 @@ export const login = (data: LoginForm) => async (
     });
   }
 };
+
+export const logout = () =>(
+  dispatch: Dispatch<AuthDispatchTypes>
+) => {
+  cookie.remove('token');
+  dispatch({
+    type: AUTH_FAIL,
+  });
+}
