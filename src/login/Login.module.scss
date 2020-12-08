@@ -1,10 +1,13 @@
 $min-height: 400px;
 $max-width: 500px;
 $shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+$radius-sm: 10px;
+
 .wrapper {
   margin: 0 auto;
   min-height: $min-height;
   max-width: $max-width;
   width: 100%;
   box-shadow: $shadow;
+  border-radius: $radius-sm;
 }

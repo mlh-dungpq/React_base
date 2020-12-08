@@ -1,0 +1,27 @@
+$error: #e51e0e;
+$white: #fff;
+$gray: #ccc;
+$grey: #555;
+
+.error {
+  color: $error;
+  font-style: italic;
+}
+
+.formControl {
+  margin-bottom: 5px;
+}
+.formInput {
+  display: block;
+  min-width: 300px;
+  max-width: 400px;
+  width: 100%;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: $grey;
+  background-color: $white;
+  background-image: none;
+  border: 1px solid $gray;
+  border-radius: 4px;
+}

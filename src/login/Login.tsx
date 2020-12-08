@@ -1,23 +1,33 @@
 import React, { useState } from "react";
-import InputField from "custom-fields/input-field/InputField";
+import { Redirect } from "react-router-dom";
 import { Form, Formik } from "formik";
+import InputField from "_custom-fields/input-field/InputField";
 import style from "./Login.module.scss";
+import { login } from "_services/auth/authActions";
+import { useDispatch, useSelector } from "react-redux";
+import { RootStore } from "store";
 const Yup = require("yup");
 
 const schema = Yup.object().shape({
   email: Yup.string().required(),
-  password: Yup.number().required(),
+  password: Yup.string().required(),
 });
 
 const Login: React.FC = () => {
+  const authState = useSelector((state: RootStore) => state.auth);
+  const dispatch = useDispatch();
   const [initialValues] = useState(() => ({
     email: "",
     password: "",
   }));
 
-  const handleLogin = () => {
-    console.log("Login");
+  const handleLogin = (data: any) => {
+    dispatch(login(data));
   };
+
+  if (authState.token) {
+    return <Redirect to="/account" />;
+  }
   return (
     <div className={`${style.wrapper} flex-center flex-column`}>
       <h1 className="font-weight-300">Login form</h1>
