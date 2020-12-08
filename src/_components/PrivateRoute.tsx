@@ -1,4 +1,4 @@
-import React, { ComponentType } from "react";
+import React, { ComponentType, useEffect } from "react";
 import { Route, Redirect, RouteComponentProps } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootStore } from "store";
@@ -15,6 +15,13 @@ const PrivateRouter: React.FC<RouteTypes> = ({
   ...rest
 }) => {
   const authState = useSelector((state: RootStore) => state.auth);
+
+  useEffect(() => {
+    if(!authState.token) {
+      <Redirect to={"/login"} />
+    }
+  })
+
   return (
     <Route
       {...rest}

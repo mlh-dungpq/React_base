@@ -1,11 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Pokemon from "./pokemon/Pokemon";
-import Users from "./users/Users";
-import Post from "./post/Post";
-import Login from "./login/Login";
 import Account from "./account/Account";
 import PrivateRouter from "_components/PrivateRoute";
+import { routes } from './routes';
 
 function App() {
   return (
@@ -32,18 +29,14 @@ function App() {
         </nav>
 
         <Switch>
-          <Route path="/post" exact>
-            <Post />
-          </Route>
-          <Route path="/users" exact>
-            <Users />
-          </Route>
-          <Route path="/" exact>
-            <Pokemon />
-          </Route>
-          <Route path="/login" exact>
-            <Login />
-          </Route>
+          {routes.map((route) => (
+            <Route
+              exact
+              key={route.path}
+              path={route.path}
+              component={route.component}
+            />
+          ))}
           <PrivateRouter path="/account" component={Account} exact />
         </Switch>
       </div>

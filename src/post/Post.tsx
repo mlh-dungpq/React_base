@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootStore } from "../store";
 import { GetPost } from "./state/postActions";
-import "./Post.scss";
+import styles from "./Post.module.scss";
 
 export default function Post() {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ export default function Post() {
   };
 
   return (
-    <div className="divPost">
+    <div className={styles.divPost}>
       <h1>Post Screen</h1>
       {postState.post ? (
         <div>
