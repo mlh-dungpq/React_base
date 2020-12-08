@@ -1,9 +1,12 @@
-import {createStore, applyMiddleware} from 'redux';
-import RootReducer from './common/state/commonReducers';
-import {composeWithDevTools} from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
+import { createStore, applyMiddleware } from "redux";
+import RootReducer from "./common/state/commonReducers";
+import { composeWithDevTools } from "redux-devtools-extension";
+import thunk from "redux-thunk";
 
-const store = createStore(RootReducer,composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(
+  RootReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);
 
-export type RootStore = ReturnType<typeof RootReducer>
+export type RootStore = ReturnType<typeof RootReducer>;
 export default store;
