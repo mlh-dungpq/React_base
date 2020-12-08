@@ -6,22 +6,24 @@ interface Props {
   name: string;
   type?: string;
   placeholder?: string;
+  label?: string;
 }
 
 const defaultProps: Props = {
   name: "",
   type: "text",
   placeholder: "",
+  label: "",
 };
 
 const InputField: React.FC<Props> = (props) => {
-  const [field, { error, touched }] = useField({
-    name: props.name,
-    type: props.name,
-  });
+  const [field, { error, touched }] = useField(props);
   return (
     <div>
-      <input {...field} {...props} />
+      {props.label && <label htmlFor={props.name}>{props.label}</label>}
+      <div className={styles.formControl}>
+        <input {...field} {...props} className={styles.formInput} />
+      </div>
       {error && touched && (
         <div className={`${styles.error} font-10`}>{error}</div>
       )}

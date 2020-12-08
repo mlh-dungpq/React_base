@@ -4,6 +4,8 @@ import Pokemon from "./pokemon/Pokemon";
 import Users from "./users/Users";
 import Post from "./post/Post";
 import Login from "./login/Login";
+import Account from "./account/Account";
+import PrivateRouter from "_components/PrivateRoute";
 
 function App() {
   return (
@@ -23,6 +25,9 @@ function App() {
             <li>
               <Link to="/login">Login</Link>
             </li>
+            <li>
+              <Link to="/account">Account</Link>
+            </li>
           </ul>
         </nav>
 
@@ -39,6 +44,7 @@ function App() {
           <Route path="/login" exact>
             <Login />
           </Route>
+          <PrivateRouter path="/account" component={Account} exact />
         </Switch>
       </div>
     </Router>
