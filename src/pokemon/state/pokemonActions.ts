@@ -1,5 +1,5 @@
 import {Dispatch} from 'redux';
-import {PokemonDispatchTypes, POKEMON_LOADING, POKEMON_FAIL, POKEMON_SUCCESS} from '../../api/pokemonTypes';
+import {PokemonDispatchTypes, POKEMON_LOADING, POKEMON_FAIL, POKEMON_SUCCESS} from './pokemonTypes';
 import axios from 'axios';
 
 export const GetPokemon = (pokemon: string) => async (dispatch: Dispatch<PokemonDispatchTypes>) => {

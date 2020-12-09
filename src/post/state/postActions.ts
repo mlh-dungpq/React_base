@@ -1,5 +1,5 @@
 import {Dispatch} from 'redux';
-import {PostDispatchTypes, POST_LOADING, POST_FAIL, POST_SUCCESS} from '../../api/postTypes';
+import {PostDispatchTypes, POST_LOADING, POST_FAIL, POST_SUCCESS} from './postTypes';
 import axios from 'axios';
 
 export const GetPost = () => async (dispatch: Dispatch<PostDispatchTypes>) => {

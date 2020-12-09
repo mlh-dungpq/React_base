@@ -1,7 +1,8 @@
-import React, { ComponentType, useEffect } from "react";
+import React, { ComponentType } from "react";
 import { Route, Redirect, RouteComponentProps } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootStore } from "store";
+import cookie from "js-cookie";
 
 export type RouteTypes = {
   path: string;
@@ -16,17 +17,11 @@ const PrivateRouter: React.FC<RouteTypes> = ({
 }) => {
   const authState = useSelector((state: RootStore) => state.auth);
 
-  useEffect(() => {
-    if(!authState.token) {
-      <Redirect to={"/login"} />
-    }
-  })
-
   return (
     <Route
       {...rest}
       render={(routeProps) =>
-        !!authState.token ? (
+        (!!authState.token || cookie.get('token')) ? (
           <RouteComponent {...routeProps} />
         ) : (
           <Redirect to={"/login"} />

@@ -1,4 +1,4 @@
-import {PostType, PostDispatchTypes, POST_LOADING, POST_FAIL, POST_SUCCESS} from '../../api/postTypes';
+import {PostType, PostDispatchTypes, POST_LOADING, POST_FAIL, POST_SUCCESS} from './postTypes';
 
 interface DefaultStateI {
   loading: boolean,

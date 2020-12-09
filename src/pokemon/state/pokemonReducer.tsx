@@ -1,4 +1,4 @@
-import {PokemonType, PokemonDispatchTypes, POKEMON_FAIL, POKEMON_LOADING, POKEMON_SUCCESS} from '../../api/pokemonTypes';
+import {PokemonType, PokemonDispatchTypes, POKEMON_FAIL, POKEMON_LOADING, POKEMON_SUCCESS} from './pokemonTypes';
 
 interface DefaultStateI {
   loading: boolean,
