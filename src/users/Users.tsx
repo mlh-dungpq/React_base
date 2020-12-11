@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Users.module.scss";
 import { Formik, Form, Field } from "formik";
+import {useTranslation} from 'react-i18next';
 const yup = require("yup");
 
 const SignupSchema = yup.object().shape({
@@ -23,6 +24,7 @@ const SignupSchema = yup.object().shape({
 });
 
 export default function Users() {
+  const {t} = useTranslation();
   const handleReset = () => {
     if (!window.confirm("Reset?")) {
       throw new Error("Cancel reset");
@@ -31,7 +33,7 @@ export default function Users() {
 
   return (
     <>
-      <h1 className={styles.textCenter}>Signup</h1>
+      <h1 className={styles.textCenter}>{t('Users.signup')}</h1>
       <div className={styles.user}>
         <Formik
           initialValues={{
@@ -50,31 +52,31 @@ export default function Users() {
         >
           {({ errors, touched }) => (
             <Form>
-              <label>First Name</label>
+              <label>{t('Users.firstName')}</label>
               <Field name="firstName" type="text" />
               {errors.firstName && touched.firstName ? (
                 <div className={styles.error}>{errors.firstName}</div>
               ) : null}
 
-              <label>Last Name</label>
+              <label>{t('Users.lastName')}</label>
               <Field name="lastName" type="text" />
               {errors.lastName && touched.lastName ? (
                 <div className={styles.error}>{errors.lastName}</div>
               ) : null}
 
-              <label>Email</label>
+              <label>{t('Users.email')}</label>
               <Field name="email" type="email" />
               {errors.email && touched.email ? (
                 <div className={styles.error}>{errors.email}</div>
               ) : null}
 
-              <label>Password</label>
+              <label>{t('Users.password')}</label>
               <Field name="password" type="password" />
               {errors.password && touched.password ? (
                 <div className={styles.error}>{errors.password}</div>
               ) : null}
 
-              <label>Confirm Password</label>
+              <label>{t('Users.confPassword')}</label>
               <Field name="confirmPassword" type="password" />
               {errors.confirmPassword && touched.confirmPassword ? (
                 <div className={styles.error}>{errors.confirmPassword}</div>

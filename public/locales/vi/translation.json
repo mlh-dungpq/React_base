@@ -1,0 +1,23 @@
+{
+  "Menu": {
+    "home": "Trang chủ",
+    "post": "Bài đăng",
+    "users": "Người dùng",
+    "login": "Đăng nhập",
+    "account": "Tài khoản"
+  },
+  "Post": {
+    "screen": "Màn hình bài viết"
+  },
+  "Users": {
+    "signup": "Đăng kí",
+    "firstName": "Họ",
+    "lastName": "Tên",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "confPassword": "Xác nhận mật khẩu"
+  },
+  "Account": {
+    "page": "Trang tài khoản"
+  }
+}

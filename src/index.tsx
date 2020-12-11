@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Suspense} from "react";
 import ReactDOM from "react-dom";
 import "./_assets/scss/main.scss";
 import App from "./App";
@@ -6,11 +6,14 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { store, persistor } from "./store";
 import { PersistGate } from 'redux-persist/integration/react'
+import "./i18next";
 
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <App />
+      <Suspense fallback={(<div>Loading ~</div>)}>
+        <App />
+      </Suspense>
     </PersistGate>
   </Provider>,
   document.getElementById("root")

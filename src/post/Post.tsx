@@ -3,9 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootStore } from "../store";
 import { GetPost } from "./state/postActions";
 import styles from "./Post.module.scss";
+import {useTranslation} from 'react-i18next';
 
 export default function Post() {
   const dispatch = useDispatch();
+  const {t} = useTranslation();
   const postState = useSelector((state: RootStore) => state.post);
 
   useEffect(() => {
@@ -18,7 +20,7 @@ export default function Post() {
 
   return (
     <div className={styles.divPost}>
-      <h1>Post Screen</h1>
+      <h1>{t('Post.screen')}</h1>
       {postState.post ? (
         <div>
           <table>

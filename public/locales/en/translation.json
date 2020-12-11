@@ -1,0 +1,23 @@
+{
+  "Menu": {
+    "home": "Home",
+    "post": "Post",
+    "users": "Users",
+    "login": "Login",
+    "account": "Account"
+  },
+  "Post": {
+    "screen": "Post Screen"
+  },
+  "Users": {
+    "signup": "Signup",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "password": "Password",
+    "confPassword": "Confirm Password"
+  },
+  "Account": {
+    "page": "Account page"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "Menu": {
+    "home": "집",
+    "post": "게시하다",
+    "users": "사용자",
+    "login": "로그인",
+    "account": "계정"
+  },
+  "Post": {
+    "screen": "포스트 화면"
+  },
+  "Users": {
+    "signup": "가입하기",
+    "firstName": "이름",
+    "lastName": "성",
+    "email": "이메일",
+    "password": "암호",
+    "confPassword": "비밀번호 확인"
+  },
+  "Account": {
+    "page": "계정 페이지"
+  }
+}
